@@ -4,11 +4,30 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors');
+
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
+const Stocks = require('./Models/stocks');
+
+// Connection URL
+const url = 'mongodb://localhost:27017/stockArchives';
+const connect = mongoose.connect(url, {
+   // useMongoClient: true,
+    /* other options */
+  });
+
+connect.then((db) => {
+    console.log("Connected correctly to MogoDB server");
+}, (err) => { console.log(err); });
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
+var _stockRouter = require('./routes/stockRouter');
+
+
 
 var app = express();
 
@@ -23,9 +42,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/stocks', _stockRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

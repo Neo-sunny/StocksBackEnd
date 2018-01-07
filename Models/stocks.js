@@ -1,7 +1,7 @@
-import { Stream } from 'stream';
-import { Double } from '../../../../Library/Caches/typescript/2.6/node_modules/@types/bson';
-
 const mongoose = require('mongoose');
+require('mongoose-double')(mongoose);
+var SchemaTypes = mongoose.Schema.Types;
+
 const Schema = mongoose.Schema;
 
 
@@ -14,19 +14,19 @@ const stockSchema = new Schema({
         type: String
     },
     open:{
-        type:Double
+        type: SchemaTypes.Double
     },
     close:{
-        type:Double
+        type: SchemaTypes.Double
     },
     low:{
-        type: Double
+        type: SchemaTypes.Double
     },
     high:{
-        type: Double
+        type: SchemaTypes.Double
     },
     vloume:{
-        type: Double
+        type: SchemaTypes.Double
     }
 
 },{
