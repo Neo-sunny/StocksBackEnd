@@ -43,4 +43,15 @@ res.send('PUT operation not supported on Stocks' );
     .catch((err) => next(err));
 });
 
+stockRouter.route('/:symbol')
+.get((req, res, next) => {
+        console.log("symbol is "+req.params.symbol)
+    Stocks.find({ 'symbol': req.params.symbol })
+    .then( (stock) => {
+        res.statusCode=200;
+        res.setHeader('Content-Type','application/json');
+        res.json(stock);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+})
 module.exports = stockRouter;

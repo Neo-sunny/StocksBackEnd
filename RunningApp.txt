@@ -1,0 +1,13 @@
+Running the App
+====================
+1.Unzip the DEShaw.zip
+2.DEShaw folder contains 3 folders and 2 files
+3. Import the data in MongoDB using the following command
+
+mongoimport --db stockArchives --collection stocks --file stocks.json
+
+4. Make sure npm is installed in your computer
+5. Move to StockArchiveBackend folder in your computer and do npm start.
+6. Move to StockArchiveFrontEnd folder in your computer and do ng serve --o.
+7.This will open http://localhost:4200/ in your default browser else hit the URL manually.
+8.DESHaw-Screens folder contains the screen shots.
